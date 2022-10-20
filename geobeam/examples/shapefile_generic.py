@@ -134,8 +134,9 @@ def create_table_from_shp(known_args,pipeline_args):
             table = client.create_table(table) 
             print(
                 "Created table {}.{}.{}".format(table.project, table.dataset_id, table.table_id)
-                )    
-    pass
+    finally:
+        pass
+    
 
 #Primary run function
 def run(pipeline_args, known_args):
