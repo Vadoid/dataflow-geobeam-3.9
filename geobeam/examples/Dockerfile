@@ -15,9 +15,9 @@
 ### Changelog ###
 #10.2022 - Dockerfile versions bump to core beam sdk 3.9:2.41 and latest versions of libs (to be ran in GCP Console with Dataflow runner)
 #Use with cloudbuild like:
-#gcloud builds submit --tag gcr.io/[project]/geobeam-base --timeout 3600s --machine-type n1-highcpu-8
+#gcloud builds submit --tag gcr.io/[project]/geobeam-example --timeout 3600s --machine-type n1-highcpu-8
 
-FROM gcr.io/vadimzaripov-477-2022062208552/geobeam-base
+FROM gcr.io/geobeam-v2/geobeam-base
 
 COPY requirements.txt ./requirements.txt
 RUN pip install --upgrade pip
