@@ -1,6 +1,6 @@
 python -m shapefile_generic \ 
 --runner DataflowRunner \  
---sdk_container_image "gcr.io/vadimzaripov-477-2022062208552/geobeam-example" \
+--sdk_container_image "gcr.io/geobeam-v2/geobeam-example" \
 --temp_location [gcs temp location with /tmp folder] \
 --service_account_email [service account to be used] \
 --region us-central1 \   
