@@ -125,18 +125,18 @@ def create_table_from_shp(known_args,pipeline_args):
         print("Table {} already exists.".format(table_id))
         #table = client.delete_table(table_id) #We are using WRITE_TRUNCATE in BigQuery, so no need to delete, if exists
     except:
-         print("Table {} is not found. Creating.".format(table_id))
+        print("Table {} is not found. Creating.".format(table_id))
+        bigquerySchema = []
+        bigqueryColumns = json.loads(schema_json)
+        for col in bigqueryColumns:
+            bigquerySchema.append(bigquery.SchemaField(col['name'], col['type']))
+        table = bigquery.Table(table_id, schema=bigquerySchema)
+        table = client.create_table(table)  # Make an API request.
+        print(
+            "Created table {}.{}.{}".format(table.project, table.dataset_id, table.table_id)
+        )
 
-    bigquerySchema = []
-    bigqueryColumns = json.loads(schema_json)
-    for col in bigqueryColumns:
-        bigquerySchema.append(bigquery.SchemaField(col['name'], col['type']))
-    table = bigquery.Table(table_id, schema=bigquerySchema)
-    table = client.create_table(table)  # Make an API request.
-    print(
-        "Created table {}.{}.{}".format(table.project, table.dataset_id, table.table_id)
-    )
-
+    
 
 
 #Primary run function
