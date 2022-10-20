@@ -120,10 +120,11 @@ def create_table_from_shp(known_args,pipeline_args):
     options = list(PipelineOptions(pipeline_args).display_data().values()) #impossible to acquire project from known_args, had to be creative with PipelineOptions
     table_id=f"{options[1]}.{known_args.dataset}.{known_args.table}"
     
-    if client.get_table(table_id):  
+    try:
+        client.get_table(table_id)  
         print("Table {} already exists.".format(table_id))
         #table = client.delete_table(table_id) #We are using WRITE_TRUNCATE in BigQuery, so no need to delete, if exists
-    else:
+    except:
          print("Table {} is not found. Creating.".format(table_id))
          bigquerySchema = []
          bigqueryColumns = json.loads(schema_json)
@@ -133,7 +134,6 @@ def create_table_from_shp(known_args,pipeline_args):
             table = client.create_table(table) 
             print(
                 "Created table {}.{}.{}".format(table.project, table.dataset_id, table.table_id))
-   
 
 #Primary run function
 def run(pipeline_args, known_args):
