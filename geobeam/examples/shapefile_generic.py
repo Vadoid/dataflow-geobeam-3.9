@@ -133,7 +133,7 @@ def create_table_from_shp(known_args,pipeline_args):
             table = bigquery.Table(table_id, schema=bigquerySchema)
             table = client.create_table(table) 
             print(
-                "Created table {}.{}.{}".format(table.project, table.dataset_id, table.table_id)
+                "Created table {}.{}.{}".format(table.project, table.dataset_id, table.table_id))
     finally:
         pass
     
