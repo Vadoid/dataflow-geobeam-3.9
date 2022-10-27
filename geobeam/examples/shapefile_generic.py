@@ -80,8 +80,8 @@ def create_table_from_shp(known_args,pipeline_args):
             with zip.open(f'{zip_name}.shp') as collection:
                 print(collection)
                 profile = collection.profile
-    elif layer_name is not None:
-        profile = BytesCollection(data, layer=layer_name).profile
+    #elif layer_name != "":
+    #    profile = BytesCollection(data, layer=layer_name).profile
     else:
         profile = fiona.open(gcs_url).profile
             
