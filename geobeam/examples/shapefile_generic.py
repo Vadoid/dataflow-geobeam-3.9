@@ -77,7 +77,7 @@ def create_table_from_shp(known_args,pipeline_args):
 
     if layer_name is not None:
         with fiona.io.ZipMemoryFile(data) as zip:
-            with zip.open(f'{layer_name}.shp') as collection:
+            with zip.open(f'{zip_name}.shp') as collection:
                 print(collection)
                 profile = collection.profile
     elif layer_name is not None:
